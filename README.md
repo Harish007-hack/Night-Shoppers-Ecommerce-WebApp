@@ -1,5 +1,8 @@
 # Night Shoppers EcommerceApp
 
+<h2>An Ecommerece app developed using Django to buy and sell products online.</h2>
+
+
 
 ![1](https://user-images.githubusercontent.com/63545094/195881594-b96375a6-0b68-41f9-98e9-1deb63429b94.PNG)
 <br>
