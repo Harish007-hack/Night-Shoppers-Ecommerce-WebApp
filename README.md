@@ -1,3 +1,3 @@
 # Night Shoppers EcommerceApp
-![My animated logo](logo.svg)
+![My animated logo](images/logo.svg)
 
