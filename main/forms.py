@@ -13,3 +13,9 @@ class Profile(ModelForm):
         model = Customer
         fields = '__all__'
         exclude= ['user']
+
+class Product(ModelForm):
+    class Meta:
+        model = Products
+        fields = '__all__'
+        exclude= ['user']
