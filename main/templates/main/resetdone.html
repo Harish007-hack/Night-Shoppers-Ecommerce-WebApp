@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card" style="margin:50px;">
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading card-heading">Well done! Password reset sent</h4>
+    <p>We’ve emailed you instructions for setting your password, if an account exists with the email you entered. You should receive them shortly.
+        <br>
+        If you don’t receive an email, please make sure you’ve entered the address you registered with, and check your spam folder.</p>
+    <hr>
+    <p class="mb-0">Head back to <a href='{% url 'login' %}'>Login<a/></p>
+  </div>
+</div>
+{% endblock content %}

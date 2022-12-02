@@ -3,41 +3,44 @@
 {% block content %}
 <form action="" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
-<section class="vh-100" style="background-color: #2779e2;">
+<section class="cta-form" name="sign-up" netlify style="background-color: #2779e2;">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-9">
   
-          <h1 class="text-white mb-4">Apply for a job</h1>
+          
   
           <div class="card" style="border-radius: 15px;">
+            <h2 style="align-self:center;">Register Product</h2>
             <div class="card-body">
+
+              {% for i in form  %}
   
               <div class="row align-items-center pt-4 pb-3">
                 <div class="col-md-3 ps-5">
   
-                  <h6 class="mb-0">Product name</h6>
+                  <label for="full-name">{{i.label}}</label>
   
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  {{form.product_name}}
+                  {{i}}
   
                 </div>
               </div>
   
   
-              <hr class="mx-n3">
+              {% comment %} <hr class="mx-n3">
   
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
   
-                  <h6 class="mb-0">Product Description</h6>
+                  <label for="full-name">Full Name</label>
   
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  {{form.description}}
+                  {{i}}
   
                 </div>
               </div>
@@ -49,12 +52,27 @@
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
   
-                  <h6 class="mb-0">Price</h6>
+                  <label for="full-name">Full Name</label>
   
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  {{form.price}}
+                  {{i}}
+  
+                </div>
+              </div>
+
+              <hr class="mx-n3">
+  
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+  
+                  <label for="full-name">Full Name</label>
+  
+                </div>
+                <div class="col-md-9 pe-5">
+  
+                  {{i}}
   
                 </div>
               </div>
@@ -64,12 +82,12 @@
               <div class="row align-items-center py-3">
                 <div class="col-md-3 ps-5">
   
-                  <h6 class="mb-0">Upload Image</h6>
+                  <label for="full-name">Full Name</label>
   
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  {{form.Image}}
+                  {{i}}
                   <div class="small text-muted mt-2">Upload product Image. Max file
                     size 50 MB</div>
   
@@ -78,10 +96,12 @@
   
               <hr class="mx-n3">
   
+              {% endcomment %}
+
+              {% endfor %}
               <div class="px-5 py-4">
                 <input type="submit" value="submit" class="btn btn-primary btn-lg"></input>
               </div>
-  
             </div>
           </div>
   
@@ -90,5 +110,103 @@
     </div>
   </section>
 </form>
+
+<style>
+	.btn--form {
+		background-color: #45260a;
+		color: #fdf2e9;
+		align-self: center;
+		padding: 1.2rem;
+		padding: 15px 100px;
+
+	  }
+	  
+	  .btn--form:hover {
+		background-color: #fff;
+		color: #555;
+	  }
+
+	  h3:after{
+		display: block;
+		height: 2px;
+		background-color: #e67e22;
+		content: " ";
+		width: 90%;
+		margin: 0 auto;
+		margin-top: 30px;
+	  }
+
+	.section-cta {
+		/* top / right / bottom / left */
+		/* padding: 9.6rem 0 12.8rem 0; */
+	  
+		/* top / horizontal / left */
+		padding: 4.8rem 0 12.8rem;
+	  }
+	  
+	  .cta {
+		display: grid;
+		/* 2/3 = 66.6% + 1/3 = 33.3% */
+		grid-template-columns: 2fr 1fr;
+		/* background-color: #e67e22; */
+		box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+		border-radius: 110px;
+	  
+		background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
+		overflow: hidden;
+	  }
+	  
+
+	  .cta-text-box {
+		padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+		color: #45260a;
+	  }
+	  
+	  .cta .heading-secondary {
+		/* color: #45260a; */
+		color: inherit;
+		margin-bottom: 3.2rem;
+	  }
+	  
+	  .cta-text {
+		font-size: 1.8rem;
+		line-height: 1.8;
+		margin-bottom: 4.8rem;
+	  }
+
+
+	  
+	  .cta-form label {
+		display: block;
+		font-size: 1.4rem;
+		font-weight: 500;
+		margin-bottom: 1.2rem;
+	  }
+	  
+	  .cta-form input,
+	  .cta-form select,
+    .cta-form textarea {
+		width: 100%;
+		padding: 1.2rem;
+		font-size: 1.3rem;
+		font-family: inherit;
+		color: inherit;
+		border: none;
+		background-color: #fdf2e9;
+		border-radius: 9px;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	  }
+	  
+	  .cta-form input::placeholder {
+		color: #aaa;
+	  }
+	  
+	  .cta *:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
+	  }
+</style>
+
+
 
 {% endblock content %}

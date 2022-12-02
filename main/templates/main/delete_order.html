@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card card-body">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+<form ation="" method="POST">
+    {% csrf_token %}
+    <h1>Are you sure want to Delete {{product.item}}</h1>
+    <input type="submit" value="Yes" class="btn btn-dark btn-lg"></input>
+    <a href="{% url 'dashboard' request.user.customer.id %}"class="btn btn-danger btn-lg">No</a>
+
+</form>
+</div>
+</div>
+{% endblock content %}

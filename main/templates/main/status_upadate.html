@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-row">
+         <label for="status">Update Status</label>
+        <select id="cars" name="status">
+          <option value="Pending">Pending</option>
+          <option value="Out For Delivary">Out For Delivary</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+        <input type="submit">
+    </div>
+</form>
+
+{% endblock content %}

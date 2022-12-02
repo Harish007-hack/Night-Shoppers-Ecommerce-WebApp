@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+        <!-- Navigation-->
+
+        <!-- Header-->
+        <div class="card" style="margin:50px;">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading card-heading">Password reset complete !</h4>
+                <p>Your password has been set. You may go ahead and log in now.</p>
+                <hr>
+                <p class="mb-0"><a href='{% url 'login' %}'>Login<a/></p>
+              </div>
+            </div>
+
+        {% endblock  %}
+

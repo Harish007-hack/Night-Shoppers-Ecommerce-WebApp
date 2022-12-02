@@ -2,40 +2,542 @@
 {% load static %}
 {% block content %}
 {% include 'main/nav.html' %}
+{% load crispy_forms_tags %}
+
+<section class="section-cta" id="cta">
+	<div class="container">
+	  <div class="cta">
+		<div class="card card-body frosted-glass">
+			<h3 class"heading-tertiary iou" style="align-self:center;padding:40px;">Account Settings</h3>
+			{% if request.user.customer.profile_picure %}
+			<img src="{{request.user.customer.profile_picure.url}}" class="avatar" alt="avatar">
+			{% endif %}
+			<br>
+			<br>
+			<button type="submit" class="btn btn--form sub">Update</button>
+		</div>
+		<div class="cta-text-box">
+		  
+
+		  <form class="cta-form" name="sign-up" netlify method="POST" action="" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% for i in form %}
+			<label for="id_first_name">{{i.label}}:</label>
+			<div >{{i}}</div>
+			{% endfor %}
+
+			
+
+			<!-- <input type="checkbox" />
+			<input type="number" /> -->
+		  
+		</div>
+		
+		</form>
+		<div>
+	</div>
+  </section>
+  <footer class="py-5 bg-dark">
+	<div class="container"><p class="m-0 text-center text-white">Copyright &copy; Night Shoppers 2022</p></div>
+</footer>
+
+
+
 
 <style>
-	.profile-pic{
-		max-width: 200px;
-		max-height:200px;
-		margin: 0 auto;
-		border-radius: 50%;
-	}
-</style>
 
-<br>
-<div class="row">
-	<div class="col-md-3">
-		<div class="card card-body">
-			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Profile</a>
-			<hr>
-			<h3 style="text-align: center">Account Settings</h3>
-			<hr>
-			<img class="profile-pic" src="{{request.user.customer.profile_picure.url}}" >
+	.frosted-glass{
+		background: linear-gradient(rgb(255 237 237 / 84%),#ffffff);
+	}
+
+	.frosted-glass::before{
 		
-		</div>
-	</div>
-	<div class="col-md-9">
-		<div class="card card-body">
-			
-			<form method="POST" action="" enctype="multipart/form-data">
-				{% csrf_token %}
-				{{form.as_p}}
-		
-			<input class="btn btn-primary" type="submit" name="Update Information">
-			</form>
-		</div>
-	</div>
-</div>
+
+	}
+
+	.btn--form {
+		background-color: #45260a;
+		color: #fdf2e9;
+		align-self: center;
+		padding: 1.2rem;
+		padding: 15px 100px;
+
+	  }
+	  
+	  .btn--form:hover {
+		background-color: #fff;
+		color: #555;
+	  }
+
+	  .sub{
+		display: inline-block;
+		text-decoration: none;
+		font-size: 2rem;
+		font-weight: 600;
+		padding: 15px 100px;
+		border-radius: 9px;
+		border: none;
+		cursor: pointer;
+		font-family: inherit;
+		/* transition: background-color 0.3s; */
+		transition: all 0.3s;
+	  }
+
+	  h3:after{
+		display: block;
+		height: 2px;
+		background-color: #e67e22;
+		content: " ";
+		width: 90%;
+		margin: 0 auto;
+		margin-top: 30px;
+	  }
+
+	.section-cta {
+		/* top / right / bottom / left */
+		/* padding: 9.6rem 0 12.8rem 0; */
+	  
+		/* top / horizontal / left */
+		padding: 4.8rem 0 12.8rem;
+	  }
+	  
+	  .cta {
+		display: grid;
+		/* 2/3 = 66.6% + 1/3 = 33.3% */
+		grid-template-columns: 1fr 2fr;
+		/* background-color: #e67e22; */
+		box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+		border-radius: 100px;
+	  
+		background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
+		overflow: hidden;
+	  }
+	  
+
+	  .avatar{
+		align-self: center;
+		vertical-align: middle;
+		width:300px;
+		height:300px;
+		border-radius: 50%;
+	  }
+
+	  .cta-text-box {
+		padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+		color: #45260a;
+	  }
+	  
+	  .cta .heading-secondary {
+		/* color: #45260a; */
+		color: inherit;
+		margin-bottom: 3.2rem;
+	  }
+	  
+	  .cta-text {
+		font-size: 1.8rem;
+		line-height: 1.8;
+		margin-bottom: 4.8rem;
+	  }
+
+	  .cta-img-box {
+		background-image: linear-gradient(
+			to right bottom,
+			rgba(235, 151, 78, 0.35),
+			rgba(230, 125, 34, 0.35)
+		  ),
+		  url("");
+		background-size: contain;
+		background-position: center;
+	  }
+	  
+	  .cta-form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 3.2rem;
+		row-gap: 2.4rem;
+	  }
+	  
+	  .cta-form label {
+		display: block;
+		font-size: 1.4rem;
+		font-weight: 500;
+		margin-bottom: 1.2rem;
+	  }
+	  
+	  .cta-form input,
+	  .cta-form select {
+		width: 100%;
+		padding: 1.2rem;
+		font-size: 1.8rem;
+		font-family: inherit;
+		color: inherit;
+		border: none;
+		background-color: #fdf2e9;
+		border-radius: 9px;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	  }
+	  
+	  .cta-form input::placeholder {
+		color: #aaa;
+	  }
+	  
+	  .cta *:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
+	  }
+
+	  @media (max-width: 84em) {
+		.hero {
+		  max-width: 120rem;
+		}
+	  
+		.heading-primary {
+		  font-size: 4.4rem;
+		}
+	  
+		.gallery {
+		  grid-template-columns: repeat(2, 1fr);
+		}
+	  }
+	  
+	  /**************************/
+	  /* BELOW 1200px (Landscape Tablets) */
+	  /**************************/
+	  
+	  @media (max-width: 75em) {
+		html {
+		  /* 9px / 16px  */
+		  font-size: 56.25%;
+		}
+	  
+		.grid {
+		  column-gap: 4.8rem;
+		  row-gap: 6.4rem;
+		}
+	  
+		.heading-secondary {
+		  font-size: 3.6rem;
+		}
+	  
+		.heading-tertiary {
+		  font-size: 2.4rem;
+		}
+	  
+		.header {
+		  padding: 0 3.2rem;
+		}
+	  
+		.main-nav-list {
+		  gap: 3.2rem;
+		}
+	  
+		.hero {
+		  gap: 4.8rem;
+		}
+	  
+		.testimonials-container {
+		  padding: 9.6rem 3.2rem;
+		}
+	  }
+	  
+	  /**************************/
+	  /* BELOW 944px (Tablets) */
+	  /**************************/
+	  
+	  @media (max-width: 59em) {
+		html {
+		  /* 8px / 16px = 0.5 = 50% */
+		  font-size: 50%;
+		}
+	  
+		.hero {
+		  grid-template-columns: 1fr;
+		  padding: 0 8rem;
+		  gap: 6.4rem;
+		}
+	  
+		.hero-text-box,
+		.hero-img-box {
+		  text-align: center;
+		}
+	  
+		.hero-img {
+		  width: 60%;
+		}
+	  
+		.delivered-meals {
+		  justify-content: center;
+		  margin-top: 3.2rem;
+		}
+	  
+		.logos img {
+		  height: 2.4rem;
+		}
+	  
+		.step-number {
+		  font-size: 7.4rem;
+		}
+	  
+		.meal-content {
+		  padding: 2.4rem 3.2rem 3.2rem 3.2rem;
+		}
+	  
+		.section-testimonials {
+		  grid-template-columns: 1fr;
+		}
+	  
+		.gallery {
+		  grid-template-columns: repeat(6, 1fr);
+		}
+	  
+		.cta {
+		  /* 3/5 = 60% + 2/5 = 40% */
+		  grid-template-columns: 3fr 2fr;
+		}
+	  
+		.cta-form {
+		  grid-template-columns: 1fr;
+		}
+	  
+		.btn--form {
+		  margin-top: 1.2rem;
+		}
+	  
+		/* MOBILE NAVIGATION */
+		.btn-mobile-nav {
+		  display: block;
+		  z-index: 9999;
+		}
+	  
+		.main-nav {
+		  background-color: rgba(255, 255, 255, 0.9);
+		  -webkit-backdrop-filter: blur(5px);
+		  backdrop-filter: blur(10px);
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100vh;
+		  transform: translateX(100%);
+	  
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  transition: all 0.5s ease-in;
+	  
+		  /* Hide navigation */
+		  /* Allows NO transitions at all */
+		  /* display: none; */
+	  
+		  /* 1) Hide it visually */
+		  opacity: 0;
+	  
+		  /* 2) Make it unaccessible to mouse and keyboard */
+		  pointer-events: none;
+	  
+		  /* 3) Hide it from screen readers */
+		  visibility: hidden;
+		}
+	  
+		.nav-open .main-nav {
+		  opacity: 1;
+		  pointer-events: auto;
+		  visibility: visible;
+		  transform: translateX(0);
+		}
+	  
+		.nav-open .icon-mobile-nav[name="close-outline"] {
+		  display: block;
+		}
+	  
+		.nav-open .icon-mobile-nav[name="menu-outline"] {
+		  display: none;
+		}
+	  
+		.main-nav-list {
+		  flex-direction: column;
+		  gap: 4.8rem;
+		}
+	  
+		.main-nav-link:link,
+		.main-nav-link:visited {
+		  font-size: 3rem;
+		}
+	  }
+	  
+	  /**************************/
+	  /* BELOW 704px (Smaller tablets) */
+	  /**************************/
+	  
+	  @media (max-width: 44em) {
+		.grid--3-cols,
+		.grid--4-cols {
+		  grid-template-columns: repeat(2, 1fr);
+		}
+	  
+		.diets {
+		  grid-column: 1 / -1;
+		  justify-self: center;
+		}
+	  
+		.heading-secondary {
+		  margin-bottom: 4.8rem;
+		}
+	  
+		.pricing-plan {
+		  width: 100%;
+		}
+	  
+		.grid--footer {
+		  grid-template-columns: repeat(6, 1fr);
+		}
+	  
+		.logo-col,
+		.address-col {
+		  grid-column: span 3;
+		}
+	  
+		.nav-col {
+		  grid-row: 1;
+		  grid-column: span 2;
+		  margin-bottom: 3.2rem;
+		}
+	  }
+	  
+	  /**************************/
+	  /* BELOW 544px (Phones) */
+	  /**************************/
+	  
+	  @media (max-width: 34em) {
+		.grid {
+		  row-gap: 4.8rem;
+		}
+	  
+		.grid--2-cols,
+		.grid--3-cols,
+		.grid--4-cols {
+		  grid-template-columns: 1fr;
+		}
+	  
+		.btn,
+		.btn:link,
+		.btn:visited {
+		  padding: 2.4rem 1.6rem;
+		}
+	  
+		.section-hero {
+		  padding: 2.4rem 0 6.4rem 0;
+		}
+	  
+		.hero {
+		  padding: 0 3.2rem;
+		}
+	  
+		.hero-img {
+		  width: 80%;
+		}
+	  
+		.logos img {
+		  height: 1.2rem;
+		}
+	  
+		.step-img-box:nth-child(2) {
+		  grid-row: 1;
+		}
+	  
+		.step-img-box:nth-child(6) {
+		  grid-row: 5;
+		}
+	  
+		.step-img-box {
+		  transform: translateY(2.4rem);
+		}
+	  
+		.testimonials {
+		  grid-template-columns: 1fr;
+		}
+	  
+		.gallery {
+		  grid-template-columns: repeat(4, 1fr);
+		  gap: 1.2rem;
+		}
+	  
+		.cta {
+		  grid-template-columns: 1fr;
+		}
+	  
+		.cta-text-box {
+		  padding: 3.2rem;
+		}
+	  
+		.cta-img-box {
+		  height: 32rem;
+		  grid-row: 1;
+		}
+	  }
+	  
+	  /* 
+	  - Font sizes (px)
+	  10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+	  
+	  - Spacing system (px)
+	  2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+	  */
+	  
+	  /**************************/
+	  /* Fixing Safari flexbox gap */
+	  /**************************/
+	  
+	  .no-flexbox-gap .main-nav-list li:not(:last-child) {
+		margin-right: 4.8rem;
+	  }
+	  
+	  .no-flexbox-gap .list-item:not(:last-child) {
+		margin-bottom: 1.6rem;
+	  }
+	  
+	  .no-flexbox-gap .list-icon:not(:last-child) {
+		margin-right: 1.6rem;
+	  }
+	  
+	  .no-flexbox-gap .delivered-faces {
+		margin-right: 1.6rem;
+	  }
+	  
+	  .no-flexbox-gap .meal-attribute:not(:last-child) {
+		margin-bottom: 2rem;
+	  }
+	  
+	  .no-flexbox-gap .meal-icon {
+		margin-right: 1.6rem;
+	  }
+	  
+	  .no-flexbox-gap .footer-row div:not(:last-child) {
+		margin-right: 6.4rem;
+	  }
+	  
+	  .no-flexbox-gap .social-links li:not(:last-child) {
+		margin-right: 2.4rem;
+	  }
+	  
+	  .no-flexbox-gap .footer-nav li:not(:last-child) {
+		margin-bottom: 2.4rem;
+	  }
+	  
+	  @media (max-width: 75em) {
+		.no-flexbox-gap .main-nav-list li:not(:last-child) {
+		  margin-right: 3.2rem;
+		}
+	  }
+	  
+	  @media (max-width: 59em) {
+		.no-flexbox-gap .main-nav-list li:not(:last-child) {
+		  margin-right: 0;
+		  margin-bottom: 4.8rem;
+		}
+	  }
+	  
+</style>
 
 
 

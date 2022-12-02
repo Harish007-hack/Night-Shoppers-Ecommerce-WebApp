@@ -3,6 +3,8 @@
 {% block content %}
 
         {% include 'main/nav.html' %}
+
+
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -16,13 +18,15 @@
                             <span>${{product.price}}</span>
                         </div>
                         <p class="lead">{{product.description}}</p>
+                        <form method="POST">
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+                            
+                                {% csrf_token %}
+                                <input class="form-control text-center me-3" id="inputQuantity" name="qty" type="num" value="1" style="max-width: 3rem" />
+                                <input class="btn btn-outline-dark flex-shrink-0 me-3" type="submit" value="Add to cart">
+                                <input class="btn btn-outline-dark flex-shrink-0" type="submit" value="Buy Now">
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

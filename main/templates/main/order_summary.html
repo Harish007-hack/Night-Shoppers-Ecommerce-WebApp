@@ -1,0 +1,72 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+{% include 'main/nav.html' %}
+
+  <main>
+    <div class="container" style="padding-top:100px;">
+
+    <div class="table-responsive text-nowrap">
+    <h2>Order Summary</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Item Price</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order_item in orders %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ order_item.item }}</td>
+            <td>{{ order_item.price }}</td>
+            <td><a href="{% url 'update-cart' order_item.id 'heheh' %}"><i class="fas fa-minus ml-3"></i></a>{{ order_item.qty }}<a href="{% url 'update-cart' order_item.id 'increment' %}"><i class="fas fa-plus ml-2"></i></a></td>
+            <td>{{ order_item.price }}</td>
+            <td><a href="{% url 'cart-delete-item' order_item.id  %} ">Delete</a></td>
+        </tr>
+        
+        {% empty %}
+        <tr>
+            <td colspan='5'>Your cart is empty</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% if object.coupon %}
+        <tr>
+            <td colspan="4"><b>Coupon</b></td>
+            <td><b>-${{ object.coupon.amount }}</b></td>
+        </tr>
+        {% endif %}
+        {% if finalprice %}
+        <tr>
+            <td colspan="4"><b>Order Total</b></td>
+            <td><b>${{ finalprice }}</b></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-warning float-right ml-2' href="{% url 'checkout' %}">Proceed to checkout</a>
+            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            </td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    </div>
+
+    </div>
+  </main>
+
+{% endblock content %}
+
+

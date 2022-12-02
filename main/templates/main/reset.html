@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="page-content">
+		<div class="form-v7-content">
+			<div class="form-left">
+				<img src="{% static 'images/form-v7.jpg' %}" alt="form">
+				<p class="text-1">Password Reset</p>
+			</div>
+			<form class="form-detail" action="#" method="POST" id="myform">
+				{% csrf_token %}
+				<div class="form-row">
+					<label for="username"><h4 style="color:#666;">Enter New Password</h4></label>
+				</div>
+                <br>
+                <div class="form-row">
+					<label for="password">NEW PASSWORD</label>
+					{{form.new_password1}}
+				</div>
+				<div class="form-row">
+					<label for="comfirm_password">CONFIRM PASSWORD</label>
+					{{form.new_password2}}
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Submit">
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		// just for the demos, avoids form submit
+		jQuery.validator.setDefaults({
+		  	debug: true,
+		  	success:  function(label){
+        		label.attr('id', 'valid');
+   		 	},
+		});
+		$( "#myform" ).validate({
+		  	rules: {
+			    your_email: {
+			      	required: true,
+			      	email: true
+			    },
+			    password: "required",
+		    	comfirm_password: {
+		      		equalTo: "#password"
+		    	}
+		  	},
+		  	messages: {
+		  		username: {
+		  			required: "Please enter an username"
+		  		},
+		  		your_email: {
+		  			required: "Please provide an email"
+		  		},
+		  		password: {
+	  				required: "Please provide a password"
+		  		},
+		  		comfirm_password: {
+		  			required: "Please provide a password",
+		      		equalTo: "Wrong Password"
+		    	}
+		  	}
+		});
+	</script>
+    {% endblock content %}
