@@ -54,7 +54,8 @@
         </tr>
         <tr>
             <td colspan="5">
-            <a class='btn btn-warning float-right ml-2' href="{% url 'checkout' %}">Proceed to checkout</a>
+            <a class='btn btn-warning float-right ml-2' href="{% url 'cartorderplace' %}" >Proceed to checkout</a>
+            {% comment %} {% url 'checkout' %} {% endcomment %}
             <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
             </td>
         </tr>

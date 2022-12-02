@@ -32,9 +32,15 @@ class Product(ModelForm):
 
 class order(ModelForm):
     class Meta:
+        model = Orders
+        fields = '__all__'
+        exclude = ['item','seller','status','buyer']
+
+class orderSum(ModelForm):
+    class Meta:
         model = OrderItems
         fields = '__all__'
-        exclude = ['item','seller','ordered']
+        exclude = ['item','user','ordered']
 
 class Updateorder(ModelForm):
     class Meta:

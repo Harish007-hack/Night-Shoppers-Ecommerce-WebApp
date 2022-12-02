@@ -36,7 +36,8 @@ class Orders(models.Model):
         ('Out For Delivary','Out For Delivary'),
         ('Delivered','Delivered')
     )
-    seller =  models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    buyer =  models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    seller =  models.ForeignKey(User, on_delete=models.CASCADE,null=True,related_name='Seller')
     item = models.ForeignKey(Products,on_delete=models.CASCADE,null=True)
     qty = models.CharField(max_length=190)
     status = models.CharField(max_length=190,choices=STATUS,default='Pending')
@@ -50,10 +51,10 @@ class OrderItems(models.Model):
     item = models.ForeignKey(Products,on_delete=models.CASCADE,null=True)
     qty = models.IntegerField()
     ordered = models.BooleanField(default=False)
-    coupon = models.ForeignKey(
-        'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
-    billing_address = models.ForeignKey(
-        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
+    # coupon = models.ForeignKey(
+    #     'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    # billing_address = models.ForeignKey(
+    #     'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

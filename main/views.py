@@ -60,7 +60,8 @@ def dashboard(request,pk):
     order = request.user.orders_set.all()
     pending = order.filter(status='Pending').count()
     delivered = order.filter(status='Delivered').count()
-    items = Products.objects.get_queryset()
+    items = request.user.products_set.all()
+    #print(request.user.products_set.all())
     context= {'items':items,'orders':order,'pending':pending,'delivered':delivered}
     return render(request,'main/dashboard_customer.html',context)
 
@@ -70,6 +71,7 @@ def acc_settings(request):
     print(request.FILES)
     if request.method == "POST":
         form = Profile(request.POST,request.FILES,instance=customer)
+        print(form.is_valid())
         if form.is_valid():
             form.save()
             return redirect('settings')
@@ -95,16 +97,30 @@ def Cart_order(request,pk):
     product = Products.objects.get(id=pk)
     seller = product.user
     if request.method == "POST":
-        form = order(request.POST)
-        print(request.POST)
-        print(form.is_valid())
-        if form.is_valid():
-            x = form.save(commit=False)
-            x.item = product
-            x.seller = seller
-            x.save()
+        if 'addcart' in request.POST:
+            form = orderSum(request.POST)
+            print(request.POST)
+            print(form.is_valid())
+            if form.is_valid():
+                x = form.save(commit=False)
+                x.item = product
+                x.user = request.user
+                x.buyer = request.user
+                x.save()
+        else:
+            form = order(request.POST)
+            print(request.POST)
+            print(form.is_valid())
+            if form.is_valid():
+                x = form.save(commit=False)
+                x.item = product
+                x.seller = seller
+                x.buyer = request.user
+                x.save()
     cart_items = OrderItems.objects.count()
-    context= {'product':product,'count':cart_items}
+    others = Products.objects.filter(tags=product.tags)[:4]
+    print(others)
+    context= {'product':product,'count':cart_items,'others':others}
     return render(request,'main/info.html',context)
 
 def product_register(request):
@@ -209,6 +225,23 @@ def checkout(request):
 
     context = {'orders':orders,'finalprice':final_price,'form':form,'couponform': CouponForm(),'DISPLAY_COUPON_FORM': True}
     return render(request,'main/checkout.html',context)
+
+
+def myorders(request):
+    order = request.user.orders_set.all()
+    context = {'orders':order}
+    return render(request,'main/orders.html',context)
+
+def CartOrder(request):
+    orders = request.user.orderitems_set.all()
+    for i in orders:
+        x =Orders.objects.create(buyer=i.user,seller=i.item.user,item=i.item,qty=i.qty,status='Pending')
+        x.save()
+        i.ordered = True    
+        i.save()
+    context={}  
+    return redirect('home')
+    
 
 """ def get_coupon(request, code):
     try:

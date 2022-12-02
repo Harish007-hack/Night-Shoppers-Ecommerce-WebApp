@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'main/nav.html' %}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Order Name</th>
+        <th scope="col">Order seller</th>
+        <th scope="col">Order Qty</th>
+        <th scope="col">Order Status</th>
+        <th scope="col">Date-Created</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for order in orders  %}
+      <tr>
+       
+        <th scope="row">{{order.id}}</th>
+        <td>{{order.item}}</td>
+        <td>{{order.seller}}</td>
+        <td>{{order.qty}}</td>
+        <td>{{order.status}}</td>
+        <td>{{order.date_ordered}}</td>
+        <td><a class="btn btn-danger" href="{% url 'deleteOrder' order.id %}" >Delete</a></td>
+       
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+</section>
+
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Night Shoppers 2022</p></div>
+</footer>
+
+{% endblock content %}
+

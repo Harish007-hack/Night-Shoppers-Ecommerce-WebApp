@@ -25,6 +25,8 @@ urlpatterns = [
     path('cart-update/<str:pk>/<str:action>/',views.update_cart,name='update-cart'),
     path('cart-delete-item/<str:pk>',views.delete_cart_item,name='cart-delete-item'),
     path('checkout',views.checkout,name='checkout'),
+    path('orders',views.myorders,name='orders'),
+    path('cartorderPlace',views.CartOrder,name='cartorderplace'),
     # path('add-coupon',views.addCoupon,name='add-coupon'),
 
 ]
