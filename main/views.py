@@ -32,7 +32,7 @@ def home(request):
     except EmptyPage:
         page = paginator.page(1)
 
-    item =  Products.objects.all()
+    item =  BannerImage.objects.all()
 
     cart_items = OrderItems.objects.count()
 

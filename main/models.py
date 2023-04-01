@@ -1,5 +1,3 @@
-from email.policy import default
-from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
@@ -17,6 +15,9 @@ class Customer(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+class BannerImage(models.Model):
+    bannerPic = models.ImageField(null=True,blank=True,error_messages = {'invalid':("Image files only")})
 
 class Products(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
