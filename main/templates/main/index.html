@@ -30,7 +30,7 @@
                         {% for item in items|slice:":3" %}
                         {% if forloop.first %}
                         <div class="carousel-item active">
-                          <img src="{{item.bannerPic.url}}" class="d-block w-100" alt="..." >
+                          <img src="{{item.Image.url}}" class="d-block w-100" alt="..." >
                           <div class="carousel-caption d-none d-md-block">
                             <h5>{{item.product_name}}</h5>
                             <p>{{item.description}}</p>
@@ -38,7 +38,7 @@
                         </div>
                         {% else %}
                         <div class="carousel-item">
-                          <img src="{{item.bannerPic.url}}" class="d-block w-100" alt="...">
+                          <img src="{{item.Image.url}}" class="d-block w-100" alt="...">
                           <div class="carousel-caption d-none d-md-block">
                             <h5>{{item.product_name}}</h5>
                             <p>{{item.description}}.</p>
@@ -346,8 +346,8 @@
             }
 
             .carousel-item{
-                max-width:100%;
-                
+                max-width:700px;
+                max-height:400px;
             }
 
 

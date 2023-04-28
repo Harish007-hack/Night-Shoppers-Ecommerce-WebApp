@@ -237,7 +237,6 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="card-header py-3">
-                            <h2 class="pro">Your Products</h2>
                             <a href="{% url 'product_register' %}" class="d-none d-sm-inline-block btn btn-dark shadow-sm "><i
                                 class="fas fa-sm text-white-50"></i> Post Product</a>
                         </div>
@@ -271,9 +270,6 @@
                                 </tbody>
                               </table>
 
-                              <br><br>
-
-                              <h2 class="pro">Your Orders</h2>
                               <table class="table">
                                 <thead class="thead-dark">
                                   <tr>
@@ -283,6 +279,7 @@
                                     <th scope="col">Order Qty</th>
                                     <th scope="col">Order Status</th>
                                     <th scope="col">Date-Created</th>
+                                    <th scope="col"></th>
                                     <th scope="col"></th>
                                   </tr>
                                 </thead>
@@ -296,6 +293,7 @@
                                     <td>{{order.qty}}</td>
                                     <td>{{order.status}}</td>
                                     <td>{{order.date_ordered}}</td>
+                                    <td><a class="btn btn-info"  href="{% url 'status_update' order.id %}" >Update</a></td>
                                     <td><a class="btn btn-danger" href="{% url 'deleteOrder' order.id %}" >Delete</a></td>
                                    
                                   </tr>
@@ -359,14 +357,5 @@
 {% else %}
 <h1>You are not a creator</h1>
 {% endif %}
-
-<style>
-    .pro{
-        display:flex;
-        justify-content:center;
-        border : 5px solid #1222;
-        color:#050;
-    }
-</style>
 
 {% endblock content %}

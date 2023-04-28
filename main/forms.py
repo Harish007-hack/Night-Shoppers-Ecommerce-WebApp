@@ -34,13 +34,7 @@ class order(ModelForm):
     class Meta:
         model = Orders
         fields = '__all__'
-        exclude = ['item','seller','status','buyer']
-
-class orderSum(ModelForm):
-    class Meta:
-        model = OrderItems
-        fields = '__all__'
-        exclude = ['item','user','ordered']
+        exclude = ['item','seller','status']
 
 class Updateorder(ModelForm):
     class Meta:
